@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from './containers/App/App';
+//import registerServiceWorker from 'registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import store from './store';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const render = () => {
+    //fancyLog();
+    ReactDOM.render(<App />, document.getElementById('root'));
+}
+
+render();
+store.subscribe(render);
+//registerServiceWorker();
+
+function fancyLog() {
+     console.log("%c Rendered with 👉 👉 👇 ", "background: purple; color: #fff"); 
+     console.log(store.getState()); 
+}
+
+//              ***Redux***
+// function createStore(reducer, initialState) {
+//     let state = initialState
+//     return {
+//         dispatch: action => { state = reducer(state, action) },
+//         getState: () => state,
+//     }
+// }
